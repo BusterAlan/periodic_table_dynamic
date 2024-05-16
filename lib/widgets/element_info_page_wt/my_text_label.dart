@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 
 class CustomTextLabel extends StatelessWidget {
 
-  final String title, body; 
+  final String title, body;
+  final String? unit; 
 
   const CustomTextLabel({
 
     super.key,
     required this.title, 
-    required this.body,
+    required this.body, 
+    this.unit, 
 
   });
 
@@ -19,12 +21,12 @@ class CustomTextLabel extends StatelessWidget {
     
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-    
+
         Text('$title: '),
-    
+
         Text(
           
-          body, 
+          '$body ${unit ?? ''}', 
           style: const TextStyle(
             
             fontWeight: FontWeight.bold,

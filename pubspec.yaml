@@ -20,4 +20,5 @@ flutter:
   assets:
     - assets/cloud_test.jpg
     - assets/hidrogeno.jpg
+    - assets/cloro.jpg
 

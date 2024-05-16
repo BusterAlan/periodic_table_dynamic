@@ -34,7 +34,8 @@ class LabelPoint extends StatelessWidget {
       child: CustomTextLabel(
 
         title: cond ? 'Punto de ebullición' : 'Punto de fusión',
-        body: cond ? '${boilingPoint.toString()} °C' : '${meltingPoint.toString()} °C',
+        body: cond ? boilingPoint.toString() : meltingPoint.toString(),
+        unit: '°C',
         
       )
     

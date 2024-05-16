@@ -5,22 +5,19 @@ import 'widgets/element_info_page_wt/widgets.dart';
 class ElementPage extends StatelessWidget {
 
   final Color groupColor;
-  final String alusivePhoto;
-  final String elementData;
-  final String symbol;
-  final String name;
-  final int atomicNumber;
-  final double atomicMass;
-  final int yearDiscovered;
-  final double boilingPoint;
-  final double meltingPoint;
+  final String alusivePhoto, elementData, symbol, name;
+  final int atomicNumber, yearDiscovered;
+  final List<int> oxidationNumbers;
+  final double atomicMass, boilingPoint, meltingPoint,
+  densityValue;
 
   const ElementPage({ super.key, required this.groupColor, 
   required this.alusivePhoto, required this.elementData, 
   required this.symbol, required this.name, 
   required this.atomicNumber, required this.atomicMass, 
   required this.yearDiscovered, required this.boilingPoint, 
-  required this.meltingPoint });
+  required this.meltingPoint, required this.densityValue, 
+  required this.oxidationNumbers });
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +31,37 @@ class ElementPage extends StatelessWidget {
       decorationColor: Colors.white
       
     );
+
+/*     List<String> oxidationNumbersStringList = List.generate(oxidationNumbers.length, (index) {
+
+      return oxidationNumbers[index].toString();
+
+    });
+
+    if (oxidationNumbers.length > 1) {
+
+      for (int i = 0; i < oxidationNumbers.length; i++) {
+
+        int positiveNumb = oxidationNumbers[i];
+        int negativeNumb = -oxidationNumbers[i];
+
+        if(
+          
+          oxidationNumbers.contains(positiveNumb) 
+          && 
+          oxidationNumbers.contains(negativeNumb)
+          
+        ) {
+
+          oxidationNumbersStringList.add('±$positiveNumb');
+          oxidationNumbers.remove(positiveNumb);
+          oxidationNumbers.remove(negativeNumb);
+
+        }
+
+      }
+
+    } */
 
     return Scaffold(
 
@@ -75,36 +103,15 @@ class ElementPage extends StatelessWidget {
                     child: Image.asset(
                       
                       alusivePhoto,
-                      opacity: const AlwaysStoppedAnimation(.33),
-                      height: 100,
-                      width: 100,
+                      opacity: const AlwaysStoppedAnimation(.20),
+                      height: 200,
+                      width: 200,
                       fit: BoxFit.cover,
                       
                     ),
                 
                   )
                 
-                ),
-
-              ]
-
-            ),
-
-            Stack(
-
-              alignment: Alignment.center,
-              children: [
-                
-                Positioned(
-              
-                  bottom: 10,
-                  child: TextButton(
-                                        
-                    onPressed: () {}, 
-                    child: const Text('Leyenda de colores')
-                                        
-                  ),
-              
                 ),
 
               ]
@@ -165,10 +172,32 @@ class ElementPage extends StatelessWidget {
 
                   CustomTextLabel(
                     
+                    title: 'Densidad',
+                    body: densityValue.toString(),
+                    unit: 'kg/m3',
+                    
+                  ),
+
+                  /* CustomTextLabel(
+                    
+                    title: 'No. de oxidación',
+                    body: densityValue.toString(),
+                    
+                  ), */
+
+                  CustomTextLabel(
+                    
                     title: 'Elemento descubierto en el año',
                     body: yearDiscovered.toString()
                     
-                  )
+                  ),
+
+                  TextButton(
+                                        
+                    onPressed: () {}, 
+                    child: const Text('Leyenda de colores')
+                                        
+                  ),
               
                 ],
               
