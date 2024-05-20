@@ -19,6 +19,7 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
 
+        useMaterial3: true,
         scaffoldBackgroundColor: const Color.fromARGB(255, 37, 37, 37),
         textTheme: const TextTheme(
           
@@ -32,7 +33,7 @@ class MainApp extends StatelessWidget {
 
             color: Colors.white
 
-          )
+          ),
           
         ),
 
@@ -41,7 +42,12 @@ class MainApp extends StatelessWidget {
           style: ButtonStyle(
             
             backgroundColor: MaterialStatePropertyAll(Color(0xFF221c2e)),
-            side: MaterialStatePropertyAll(BorderSide(color: Colors.white)),
+            side: MaterialStatePropertyAll(
+              
+              BorderSide(color: Colors.white)
+              
+            ),
+
             foregroundColor: MaterialStatePropertyAll(Colors.white)
 
           )
@@ -63,6 +69,7 @@ class MainApp extends StatelessWidget {
         boilingPoint: -252.9,
         meltingPoint: -259.1,
         densityValue: 0.09,
+        electronegativity: 2.2,
         oxidationNumbers: [ -1, 1 ],
         
       ),
@@ -80,6 +87,7 @@ class MainApp extends StatelessWidget {
         boilingPoint: -34.04,
         meltingPoint: -101.5,
         densityValue: 3.214,
+        electronegativity: 3.16,
         oxidationNumbers: [ -1, 1, 3, 5, 7 ],
         
       ), */

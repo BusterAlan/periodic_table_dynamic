@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:periodic_table_dynamic/notation/unicode_map.dart';
 
 import 'widgets/element_info_page_wt/widgets.dart';
 
@@ -9,7 +10,7 @@ class ElementPage extends StatelessWidget {
   final int atomicNumber, yearDiscovered;
   final List<int> oxidationNumbers;
   final double atomicMass, boilingPoint, meltingPoint,
-  densityValue;
+  densityValue, electronegativity;
 
   const ElementPage({ super.key, required this.groupColor, 
   required this.alusivePhoto, required this.elementData, 
@@ -17,7 +18,8 @@ class ElementPage extends StatelessWidget {
   required this.atomicNumber, required this.atomicMass, 
   required this.yearDiscovered, required this.boilingPoint, 
   required this.meltingPoint, required this.densityValue, 
-  required this.oxidationNumbers });
+  required this.oxidationNumbers, 
+  required this.electronegativity });
 
   @override
   Widget build(BuildContext context) {
@@ -32,51 +34,20 @@ class ElementPage extends StatelessWidget {
       
     );
 
-/*     List<String> oxidationNumbersStringList = List.generate(oxidationNumbers.length, (index) {
-
-      return oxidationNumbers[index].toString();
-
-    });
-
-    if (oxidationNumbers.length > 1) {
-
-      for (int i = 0; i < oxidationNumbers.length; i++) {
-
-        int positiveNumb = oxidationNumbers[i];
-        int negativeNumb = -oxidationNumbers[i];
-
-        if(
-          
-          oxidationNumbers.contains(positiveNumb) 
-          && 
-          oxidationNumbers.contains(negativeNumb)
-          
-        ) {
-
-          oxidationNumbersStringList.add('±$positiveNumb');
-          oxidationNumbers.remove(positiveNumb);
-          oxidationNumbers.remove(negativeNumb);
-
-        }
-
-      }
-
-    } */
-
     return Scaffold(
 
       body: Center(
-
+      
         child: Stack(
-
+      
           children: [ 
             
             Container(
-
+      
               width: double.infinity,
               height: (size.height) / 3,
               decoration: BoxDecoration(
-
+      
                 color: groupColor.withOpacity(0.2),
                 borderRadius: const BorderRadius.only(
                   
@@ -84,13 +55,13 @@ class ElementPage extends StatelessWidget {
                   bottomRight: Radius.circular(70)
                   
                 )
-
+      
               ),
-
+      
             ),
-
+      
             Stack(
-
+                      
               alignment: Alignment.center,
               children: [
                 
@@ -113,13 +84,13 @@ class ElementPage extends StatelessWidget {
                   )
                 
                 ),
-
+                      
               ]
-
+                      
             ),
-
+      
             Center(
-
+      
               child: Column(
               
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -135,7 +106,7 @@ class ElementPage extends StatelessWidget {
                   ),
               
                   Padding(
-
+      
                     padding: const EdgeInsets.symmetric(horizontal: 33),
                     child: Text(
                       
@@ -143,13 +114,13 @@ class ElementPage extends StatelessWidget {
                       textAlign: TextAlign.justify,
                       
                     ),
-
+      
                   ),
-
+      
                   Column(
-
+      
                     children: [
-
+      
                       LabelPoint(
                         
                         boilingPoint: boilingPoint, 
@@ -157,7 +128,7 @@ class ElementPage extends StatelessWidget {
                         colorLabel: const Color.fromARGB(255, 81, 5, 0),
                         
                       ),
-
+      
                       LabelPoint(
                         
                         meltingPoint: meltingPoint, 
@@ -165,50 +136,45 @@ class ElementPage extends StatelessWidget {
                         colorLabel: const Color.fromARGB(255, 0, 63, 84),
                         
                       ),
-
+      
                     ],
-
+      
                   ),
-
+      
                   CustomTextLabel(
                     
                     title: 'Densidad',
                     body: densityValue.toString(),
-                    unit: 'kg/m3',
+                    unit: 'kg/m${UnicodeMap.unicodeMap["3"]!.superscript}',
                     
                   ),
-
-                  /* CustomTextLabel(
+      
+                  CustomTextLabel(
                     
-                    title: 'No. de oxidación',
-                    body: densityValue.toString(),
+                    title: 'Electronegatividad', 
+                    body: electronegativity.toString()
                     
-                  ), */
-
+                  ),
+      
                   CustomTextLabel(
                     
                     title: 'Elemento descubierto en el año',
                     body: yearDiscovered.toString()
                     
                   ),
-
-                  TextButton(
-                                        
-                    onPressed: () {}, 
-                    child: const Text('Leyenda de colores')
-                                        
-                  ),
+      
+                  const ColorHelper(),
               
                 ],
               
               ),
-
+      
             ),
-
+      
           ]
-
+      
         ),
-
+      
       ),
 
     );
@@ -216,5 +182,4 @@ class ElementPage extends StatelessWidget {
   }
 
 }
-
 
