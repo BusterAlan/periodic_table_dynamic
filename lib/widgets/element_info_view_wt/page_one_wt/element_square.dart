@@ -17,8 +17,8 @@ class SquareElement extends StatelessWidget {
 
     return Container(
     
-      height: 120,
-      width: 120,
+      height: 240,
+      width: 240,
       decoration: BoxDecoration(
     
         borderRadius: BorderRadius.circular(10),
@@ -34,7 +34,7 @@ class SquareElement extends StatelessWidget {
     
           Padding(
     
-            padding: const EdgeInsets.all(3),
+            padding: const EdgeInsets.all(7.5),
             child: Row(
             
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -43,12 +43,14 @@ class SquareElement extends StatelessWidget {
                 Text(
                   
                   atomicNumber.toString(),
+                  style: const TextStyle(fontSize: 20),
                   
                 ),
             
                 Text(
                   
                   atomicMass.toString(),
+                  style: const TextStyle(fontSize: 20),
                   
                 ),
             
@@ -66,7 +68,7 @@ class SquareElement extends StatelessWidget {
             textAlign: TextAlign.center,
             style: const TextStyle(
                 
-              fontSize: 50,
+              fontSize: 100,
               fontWeight: FontWeight.bold,
                 
             ),
@@ -80,7 +82,8 @@ class SquareElement extends StatelessWidget {
             name,
             style: const TextStyle(
           
-              color: Colors.white
+              color: Colors.white,
+              fontSize: 20,
           
             ),
             

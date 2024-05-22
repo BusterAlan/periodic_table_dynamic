@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:periodic_table_dynamic/widgets/element_info_page_wt/widgets.dart';
+import 'package:periodic_table_dynamic/widgets/element_info_view_wt/widgets.dart';
 
 class LabelPoint extends StatelessWidget {
 

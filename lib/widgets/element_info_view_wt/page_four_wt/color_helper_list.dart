@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:periodic_table_dynamic/widgets/element_info_page_wt/widgets.dart' show ColorLabelHelp;
+import 'package:periodic_table_dynamic/widgets/element_info_view_wt/widgets.dart' show ColorLabelHelp;
 
 class ColorHelper extends StatelessWidget {
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:periodic_table_dynamic/element_info_page.dart';
+import 'package:periodic_table_dynamic/pages/element_swipe_view.dart';
 
 void main() {
 
@@ -41,7 +41,7 @@ class MainApp extends StatelessWidget {
 
           style: ButtonStyle(
             
-            backgroundColor: MaterialStatePropertyAll(Color(0xFF221c2e)),
+            backgroundColor: MaterialStatePropertyAll(Color.fromARGB(121, 34, 28, 46)),
             side: MaterialStatePropertyAll(
               
               BorderSide(color: Colors.white)
@@ -56,7 +56,7 @@ class MainApp extends StatelessWidget {
 
       ),
 
-      home: const ElementPage(
+      home: const ElementSwipeView(
         
         groupColor: Color.fromRGBO(236,105,18,1),
         alusivePhoto: 'assets/hidrogeno.jpg',
@@ -74,7 +74,7 @@ class MainApp extends StatelessWidget {
         
       ),
 
-/*       home: const ElementPage(
+/*       home: const ElementSwipeView(
         
         groupColor: Color.fromRGBO(147,167,14,1),
         alusivePhoto: 'assets/cloro.jpg',
