@@ -34,8 +34,6 @@ class MyHelperButton extends StatelessWidget {
 
   Future<void> myCustomShowDialog(BuildContext context) {
 
-    Size size = MediaQuery.of(context).size;
-
     return showAdaptiveDialog(
         
       context: context,
@@ -65,18 +63,13 @@ class MyHelperButton extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: myContent,
         
-          ) : SingleChildScrollView(
+          ) : Padding(
 
-            scrollDirection: Axis.horizontal,
-            child: Padding(
-
-              padding: EdgeInsets.symmetric(horizontal: size.width * 0.1, vertical: size.height * 0.1),
-              child: Row(
-                
-                mainAxisAlignment: MainAxisAlignment.center, 
-                children: myContent
-                
-              ),
+            padding: const EdgeInsets.all(12),
+            child: Row(
+              
+              mainAxisAlignment: MainAxisAlignment.center, 
+              children: myContent
               
             ),
 

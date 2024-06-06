@@ -175,7 +175,11 @@ class _TableViewPageState extends State<TableViewPage> {
 
                                           ),
 
-                                          child: Text(mySymbols[validIndex]),
+                                          child: Center(
+                                            
+                                            child: Text(mySymbols[validIndex])
+                                            
+                                          ),
 
                                         );
 
@@ -186,8 +190,6 @@ class _TableViewPageState extends State<TableViewPage> {
                                   ).myCustomShowDialog(context);
 
                                 } else {
-
-                                  print(validIndex);
 
                                   Navigator.of(context).push(
 
