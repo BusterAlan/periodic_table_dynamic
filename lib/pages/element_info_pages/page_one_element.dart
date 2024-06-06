@@ -3,15 +3,21 @@ import 'package:periodic_table_dynamic/widgets/element_info_view_wt/widgets.dart
 
 class PageOneElement extends StatelessWidget {
 
-  final Color groupColor;
   final String alusivePhoto, elementData, symbol, name;
   final int atomicNumber;
   final double atomicMass;
 
-  const PageOneElement({ super.key, required this.groupColor, 
-  required this.alusivePhoto, required this.elementData, 
-  required this.symbol, required this.name, 
-  required this.atomicNumber, required this.atomicMass, });
+  const PageOneElement({ 
+    
+    super.key,
+    required this.alusivePhoto, 
+    required this.elementData, 
+    required this.symbol, 
+    required this.name, 
+    required this.atomicNumber, 
+    required this.atomicMass, 
+    
+  });
 
   @override
   Widget build(BuildContext context) {

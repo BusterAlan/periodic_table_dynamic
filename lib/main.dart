@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:periodic_table_dynamic/pages/element_swipe_view.dart';
+import 'package:periodic_table_dynamic/pages/table_view.dart';
 
 void main() {
 
@@ -41,14 +41,14 @@ class MainApp extends StatelessWidget {
 
           style: ButtonStyle(
             
-            backgroundColor: MaterialStatePropertyAll(Color.fromARGB(121, 34, 28, 46)),
-            side: MaterialStatePropertyAll(
+            backgroundColor: WidgetStatePropertyAll(Color.fromARGB(121, 34, 28, 46)),
+            side: WidgetStatePropertyAll(
               
               BorderSide(color: Colors.white)
               
             ),
 
-            foregroundColor: MaterialStatePropertyAll(Colors.white)
+            foregroundColor: WidgetStatePropertyAll(Colors.white)
 
           )
 
@@ -56,41 +56,7 @@ class MainApp extends StatelessWidget {
 
       ),
 
-      home: const ElementSwipeView(
-        
-        groupColor: Color.fromRGBO(236,105,18,1),
-        alusivePhoto: 'assets/hidrogeno.jpg',
-        elementData: "El hidrógeno es el elemento más ligero y abundante en el universo, constituyendo aproximadamente el 75% de la materia elemental. Es un gas incoloro, inodoro y altamente inflamable en su forma diatómica (H₂). Aunque se encuentra en grandes cantidades en estrellas y planetas gaseosos, en la Tierra se encuentra principalmente en forma de compuestos como el agua y los hidrocarburos.",
-        symbol: 'H',
-        name: 'Hidrógeno',
-        atomicNumber: 1,
-        atomicMass: 1.0078,
-        yearDiscovered: 1766,
-        boilingPoint: -252.9,
-        meltingPoint: -259.1,
-        densityValue: 0.09,
-        electronegativity: 2.2,
-        oxidationNumbers: [ -1, 1 ],
-        
-      ),
-
-/*       home: const ElementSwipeView(
-        
-        groupColor: Color.fromRGBO(147,167,14,1),
-        alusivePhoto: 'assets/cloro.jpg',
-        elementData: "El cloro es un elemento químico perteneciente al grupo de los halógenos, con el símbolo Cl y número atómico 17. Es un gas amarillo verdoso, con un olor acre y muy reactivo. En su forma diatómica (Cl₂), es altamente tóxico y se utiliza principalmente como desinfectante y agente blanqueador. El cloro es esencial en la purificación de agua potable y en la desinfección de piscinas. Además, es un componente clave en la producción de una amplia variedad de productos químicos, incluidos los plásticos, solventes y medicamentos. Debido a su alta reactividad, el cloro raramente se encuentra en la naturaleza en su forma elemental, pero es abundante en forma de compuestos como la sal común (cloruro de sodio).",
-        symbol: 'Cl',
-        name: 'Cloro',
-        atomicNumber: 17,
-        atomicMass: 35.453,
-        yearDiscovered: 1774,
-        boilingPoint: -34.04,
-        meltingPoint: -101.5,
-        densityValue: 3.214,
-        electronegativity: 3.16,
-        oxidationNumbers: [ -1, 1, 3, 5, 7 ],
-        
-      ), */
+      home: const TableViewPage()
 
     );
 

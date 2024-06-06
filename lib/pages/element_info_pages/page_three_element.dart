@@ -1,33 +1,58 @@
 import 'package:flutter/material.dart';
+import 'package:periodic_table_dynamic/constants.dart';
 import 'package:periodic_table_dynamic/notation/unicode_map.dart';
 import 'package:periodic_table_dynamic/widgets/element_info_view_wt/widgets.dart';
 
 class PageThreeElement extends StatelessWidget {
 
-  final Color groupColor;
-  final String alusivePhoto;
   final int yearDiscovered;
   final List<int> oxidationNumbers;
   final double boilingPoint, meltingPoint,
-  densityValue, electronegativity;
+  densityValue, electronegativity, costPerOneHundredGrams;
+  final Color? colorIcon;
 
-  const PageThreeElement({ super.key, required this.groupColor, 
-  required this.alusivePhoto,
-  required this.yearDiscovered, required this.boilingPoint, 
-  required this.meltingPoint, required this.densityValue, 
-  required this.oxidationNumbers, 
-  required this.electronegativity });
+  const PageThreeElement({ 
+    
+    super.key,
+    required this.yearDiscovered, required this.boilingPoint, 
+    required this.meltingPoint, required this.densityValue, 
+    required this.oxidationNumbers, 
+    required this.electronegativity, 
+    required this.costPerOneHundredGrams, 
+    this.colorIcon 
+  
+  });
 
   @override
   Widget build(BuildContext context) {
 
-    TextStyle textBoldSample = const TextStyle(
-            
-      fontWeight: FontWeight.bold,
-      decoration: TextDecoration.underline,
-      decorationColor: Colors.white
+    List<Widget> colorHelperList = List.generate(
       
-    );
+      AppConstants.myMeaningList.length, 
+      (index) => ColorLabelHelp(
+                    
+        colorIcon: AppConstants.myColorList[index],
+        meaning: AppConstants.myMeaningList[index],
+                    
+      ),
+      
+    ); 
+
+    List<Widget> oxidationViewNumberList = List.generate(
+      
+      oxidationNumbers.length, 
+      (index) => Text(
+                    
+        oxidationNumbers[index].toString(),
+        style: AppConstants.underAndBold.copyWith(
+
+          fontSize: 30
+
+        ),
+
+      ),
+      
+    ); 
 
     return Column(
 
@@ -35,18 +60,16 @@ class PageThreeElement extends StatelessWidget {
       children: [
 
         LabelPoint(
-                        
-          boilingPoint: boilingPoint, 
-          textBoldSample: textBoldSample,
-          colorLabel: const Color.fromARGB(255, 81, 5, 0),
-          
-        ),
-      
-        LabelPoint(
           
           meltingPoint: meltingPoint, 
-          textBoldSample: textBoldSample,
           colorLabel: const Color.fromARGB(255, 0, 63, 84),
+          
+        ),
+        
+        LabelPoint(
+                        
+          boilingPoint: boilingPoint, 
+          colorLabel: const Color.fromARGB(255, 81, 5, 0),
           
         ),
       
@@ -54,7 +77,7 @@ class PageThreeElement extends StatelessWidget {
           
           title: 'Densidad',
           body: densityValue.toString(),
-          unit: 'kg/m${UnicodeMap.unicodeMap["3"]!.superscript}',
+          unit: 'g/cm${UnicodeMap.unicodeMap["3"]!.superscript}',
           
         ),
 
@@ -72,12 +95,29 @@ class PageThreeElement extends StatelessWidget {
           
         ),
 
-        const Row(
+        CustomTextLabel(
+          
+          title: 'Costo por cien gramos', 
+          body: costPerOneHundredGrams.toString(),
+          unit: 'USD',
+          iconLabel: Icons.attach_money_outlined,
+          color: Colors.greenAccent,
+          
+        ),
+
+        MyHelperButton(
+
+          title: 'Números de oxidación',
+          myContent: oxidationViewNumberList, 
+
+        ),
+
+        Row(
 
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
 
-            Text(
+            const Text(
               
               '¿Qué significa los colores?',
               style: TextStyle(
@@ -88,18 +128,24 @@ class PageThreeElement extends StatelessWidget {
               
             ),
 
-            SizedBox(width: 5),
+            const SizedBox(width: 5),
 
-            Icon(
+            const Icon(
               
               Icons.arrow_forward,
               color: Colors.white,
+              size: 15,
               
             ),
 
-            SizedBox(width: 5),
+            const SizedBox(width: 5),
 
-            ColorHelper(),
+            MyHelperButton(
+              
+              title: 'Leyenda de colores', 
+              myContent: colorHelperList, 
+              
+            ),
 
           ],
 

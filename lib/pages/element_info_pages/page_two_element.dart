@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 
 class PageTwoElement extends StatelessWidget {
 
-  final Color groupColor;
-  final String alusivePhoto, elementData;
+  final String elementData, latinName, englishName, casNumber;
 
   const PageTwoElement({ 
     
     super.key, 
-    required this.groupColor, 
-    required this.alusivePhoto, 
-    required this.elementData
+    required this.elementData, 
+    required this.latinName, 
+    required this.englishName, 
+    required this.casNumber
     
   });
 
@@ -23,6 +23,64 @@ class PageTwoElement extends StatelessWidget {
       
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [ 
+
+        Column(
+
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+
+            Row(
+
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+
+                Text(
+                
+                  englishName, 
+                  style: const TextStyle(
+                    
+                    fontSize: 20, 
+                    fontWeight: FontWeight.bold
+                    
+                  ),
+                  
+                ),
+
+                const SizedBox(width: 10),
+
+                Text(
+                  
+                  latinName, 
+                  style: TextStyle(
+                    
+                    fontSize: 20, 
+                    fontStyle: FontStyle.italic,
+                    color: Theme.of(context).indicatorColor.withOpacity(0.66),
+                    
+                  ),
+                  
+                ),
+
+              ],
+
+            ),
+
+            Text(
+              
+              'CAS$casNumber', 
+              style: TextStyle(
+
+                fontSize: 30,
+                color: Theme.of(context).indicatorColor.withOpacity(0.25),
+                fontWeight: FontWeight.w900
+
+              ),
+              
+            ),
+
+          ],
+
+        ),
         
         Padding(
 

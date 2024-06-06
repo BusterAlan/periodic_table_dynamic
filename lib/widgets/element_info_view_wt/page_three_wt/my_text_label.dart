@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:periodic_table_dynamic/constants.dart';
 
 class CustomTextLabel extends StatelessWidget {
 
   final String title, body;
   final String? unit; 
+  final IconData? iconLabel;
+  final Color? color;
 
   const CustomTextLabel({
 
@@ -11,6 +14,8 @@ class CustomTextLabel extends StatelessWidget {
     required this.title, 
     required this.body, 
     this.unit, 
+    this.iconLabel, 
+    this.color, 
 
   });
 
@@ -22,18 +27,27 @@ class CustomTextLabel extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
 
+        if (iconLabel != null) 
+        
+        Padding(
+
+          padding: const EdgeInsets.only(right: 5),
+          child: Icon(
+            
+            iconLabel,
+            color: color,
+            size: 25,
+            
+          ),
+
+        ),
+
         Text('$title: '),
 
         Text(
           
           '$body ${unit ?? ''}', 
-          style: const TextStyle(
-            
-            fontWeight: FontWeight.bold,
-            decoration: TextDecoration.underline,
-            decorationColor: Colors.white
-            
-          ),
+          style: AppConstants.underAndBold
           
         )
     

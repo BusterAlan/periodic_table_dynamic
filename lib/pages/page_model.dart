@@ -5,15 +5,18 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 class PageModel extends StatefulWidget {
 
   final Color groupColor;
-  final String alusivePhoto;
+  final String? englishName, latinName;
   final List<Widget> customContent;
+  final PreferredSizeWidget? myAppBar;
 
   const PageModel({
 
     super.key, 
     required this.groupColor, 
-    required this.alusivePhoto, 
-    required this.customContent
+    required this.customContent, 
+    this.englishName,
+    this.latinName, 
+    this.myAppBar, 
 
   });
 
@@ -24,7 +27,7 @@ class PageModel extends StatefulWidget {
 
 class _PageModelState extends State<PageModel> {
 
-  final controller = PageController();
+  late final controller = PageController();
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +36,7 @@ class _PageModelState extends State<PageModel> {
 
     return Scaffold(
 
+      appBar: widget.myAppBar,
       body: SafeArea(
 
         child: Stack(
