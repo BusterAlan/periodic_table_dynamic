@@ -1,58 +1,52 @@
 import 'package:flutter/material.dart';
-import 'package:periodic_table_dynamic/constants.dart';
 import 'package:periodic_table_dynamic/notation/unicode_map.dart';
 import 'package:periodic_table_dynamic/widgets/element_info_view_wt/widgets.dart';
 
 class PageThreeElement extends StatelessWidget {
 
   final int yearDiscovered;
-  final List<int> oxidationNumbers;
   final double boilingPoint, meltingPoint,
-  densityValue, electronegativity, costPerOneHundredGrams;
+  densityValue, electronegativity, costPerOneHundredGrams,
+  ionizationEnergy;
   final Color? colorIcon;
 
   const PageThreeElement({ 
     
     super.key,
-    required this.yearDiscovered, required this.boilingPoint, 
-    required this.meltingPoint, required this.densityValue, 
-    required this.oxidationNumbers, 
+    required this.yearDiscovered, 
+    required this.boilingPoint, 
+    required this.meltingPoint, 
+    required this.densityValue, 
     required this.electronegativity, 
     required this.costPerOneHundredGrams, 
-    this.colorIcon 
+    this.colorIcon, 
+    required this.ionizationEnergy 
   
   });
 
+  String yearIssue(int year) {
+
+    String suffix = 'a.C.';
+
+    if (
+      
+      year == 3750 || year == 500 ||
+      year == 2000 || year == 8000
+      
+    ) {
+
+      return '$year $suffix';
+
+    } else {
+
+      return year.toString();
+
+    }
+
+  }
+
   @override
   Widget build(BuildContext context) {
-
-    List<Widget> colorHelperList = List.generate(
-      
-      AppConstants.myMeaningList.length, 
-      (index) => ColorLabelHelp(
-                    
-        colorIcon: AppConstants.myColorList[index],
-        meaning: AppConstants.myMeaningList[index],
-                    
-      ),
-      
-    ); 
-
-    List<Widget> oxidationViewNumberList = List.generate(
-      
-      oxidationNumbers.length, 
-      (index) => Text(
-                    
-        oxidationNumbers[index].toString(),
-        style: AppConstants.underAndBold.copyWith(
-
-          fontSize: 30
-
-        ),
-
-      ),
-      
-    ); 
 
     return Column(
 
@@ -76,8 +70,15 @@ class PageThreeElement extends StatelessWidget {
         CustomTextLabel(
           
           title: 'Densidad',
-          body: densityValue.toString(),
+          body: densityValue.toStringAsExponential(),
           unit: 'g/cm${UnicodeMap.unicodeMap["3"]!.superscript}',
+          
+        ),
+
+        CustomTextLabel(
+          
+          title: 'Potencial de ionización de un átomo', 
+          body: ionizationEnergy.toString()
           
         ),
 
@@ -91,7 +92,7 @@ class PageThreeElement extends StatelessWidget {
         CustomTextLabel(
           
           title: 'Elemento descubierto en el año',
-          body: yearDiscovered.toString()
+          body: yearIssue(yearDiscovered)
           
         ),
 
@@ -103,52 +104,6 @@ class PageThreeElement extends StatelessWidget {
           iconLabel: Icons.attach_money_outlined,
           color: Colors.greenAccent,
           
-        ),
-
-        MyHelperButton(
-
-          title: 'Números de oxidación',
-          myContent: oxidationViewNumberList, 
-
-        ),
-
-        Row(
-
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-
-            const Text(
-              
-              '¿Qué significa los colores?',
-              style: TextStyle(
-                
-                fontWeight: FontWeight.bold
-                
-              ),
-              
-            ),
-
-            const SizedBox(width: 5),
-
-            const Icon(
-              
-              Icons.arrow_forward,
-              color: Colors.white,
-              size: 15,
-              
-            ),
-
-            const SizedBox(width: 5),
-
-            MyHelperButton(
-              
-              title: 'Leyenda de colores', 
-              myContent: colorHelperList, 
-              
-            ),
-
-          ],
-
         ),
 
       ],

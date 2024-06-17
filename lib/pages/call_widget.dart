@@ -58,36 +58,44 @@ class _CallWidgetFunctionState extends State<CallWidgetFunction> {
 
         if (snapshot.hasData) {
 
+          PeriodicTableElement e = snapshot.data!;
+
           return ElementSwipeView(
       
             orientation:  widget.orientation,
             alusivePhoto: 'assets/cloud_test.jpg', 
 
-            atomicNumber:           snapshot.data!.atomicNumber, 
-            symbol:                 snapshot.data!.symbol, 
-            name:                   snapshot.data!.name, 
-            latinName:              snapshot.data!.latinName,
-            englishName:            snapshot.data!.englishName,
-            atomicMass:             snapshot.data!.atomicMass, 
-            yearDiscovered:         snapshot.data!.yearDiscovered, 
-            boilingPoint:           snapshot.data!.boilingPoint, 
-            meltingPoint:           snapshot.data!.meltingPoint, 
-            densityValue:           snapshot.data!.densityValue, 
-            oxidationNumbers:       snapshot.data!.oxidationStates, 
-            electronegativity:      snapshot.data!.electronegativity, 
-            costPerOneHundredGrams: snapshot.data!.costPerOneHundredGrams,
-            casNumber:              snapshot.data!.casNumber,
+            atomicNumber:           e.atomicNumber, 
+            symbol:                 e.symbol, 
+            name:                   e.name, 
+            latinName:              e.latinName,
+            englishName:            e.englishName,
+            atomicMass:             e.atomicMass, 
+            yearDiscovered:         e.yearDiscovered, 
+            boilingPoint:           e.boilingPoint, 
+            meltingPoint:           e.meltingPoint, 
+            densityValue:           e.densityValue, 
+            oxidationNumbers:       e.oxidationStates, 
+            electronegativity:      e.electronegativity, 
+            costPerOneHundredGrams: e.costPerOneHundredGrams,
+            casNumber:              e.casNumber,
 
-            groupColor:         Color.fromRGBO(
+            groupColor: Color.fromRGBO(
               
-              snapshot.data!.color.red, 
-              snapshot.data!.color.green, 
-              snapshot.data!.color.blue, 
+              e.color.red, 
+              e.color.green, 
+              e.color.blue, 
               1
               
             ),
             
-            elementDescription: snapshot.data!.elementDescription,
+            elementDescription: e.elementDescription,
+            discoveredBy: e.discoveredBy,
+            valenceStates: e.valenceStates,
+            period: e.period,
+            groupElement: e.groupElement, 
+            ionizationEnergy: e.ionizationEnergy,
+            electronicLayers: e.electroniclayers,
             
           );
 

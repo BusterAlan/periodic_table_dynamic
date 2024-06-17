@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:periodic_table_dynamic/constants.dart';
 
 class SquareElement extends StatelessWidget {
 
@@ -17,8 +18,8 @@ class SquareElement extends StatelessWidget {
 
     return Container(
     
-      height: 240,
-      width: 240,
+      height: AppConstants.sizeSquare,
+      width: AppConstants.sizeSquare,
       decoration: BoxDecoration(
     
         borderRadius: BorderRadius.circular(10),

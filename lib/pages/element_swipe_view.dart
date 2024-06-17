@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:periodic_table_dynamic/database/periodic_table_element.dart';
 import 'package:periodic_table_dynamic/pages/element_info_pages/element_info_pages.dart';
 import 'package:periodic_table_dynamic/pages/page_model.dart';
 
 class ElementSwipeView extends StatefulWidget {
 
   final Color groupColor;
-  final String alusivePhoto, elementDescription, symbol, name, englishName, latinName, casNumber;
-  final int atomicNumber, yearDiscovered;
-  final List<int> oxidationNumbers;
-  final double atomicMass, boilingPoint, meltingPoint, costPerOneHundredGrams,
+  final String alusivePhoto, elementDescription, symbol, name, 
+  englishName, latinName, casNumber, groupElement;
+  final List<String> discoveredBy;
+  final int atomicNumber, yearDiscovered, period;
+  final List<int> oxidationNumbers, valenceStates;
+  final double atomicMass, boilingPoint, meltingPoint, 
+  costPerOneHundredGrams, ionizationEnergy,
   densityValue, electronegativity;
   final Future<void>? orientation;
+  final Electroniclayers electronicLayers;
 
   const ElementSwipeView({ 
     
@@ -33,7 +38,13 @@ class ElementSwipeView extends StatefulWidget {
     required this.latinName, 
     required this.costPerOneHundredGrams, 
     required this.casNumber, 
+    required this.discoveredBy, 
     this.orientation, 
+    required this.valenceStates, 
+    required this.groupElement, 
+    required this.period, 
+    required this.ionizationEnergy, 
+    required this.electronicLayers, 
     
   });
 
@@ -88,6 +99,7 @@ class _ElementSwipeViewState extends State<ElementSwipeView> {
           name: widget.name, 
           atomicNumber: widget.atomicNumber, 
           atomicMass: widget.atomicMass,
+          electroniclayers: widget.electronicLayers,
           
         ),
 
@@ -105,12 +117,25 @@ class _ElementSwipeViewState extends State<ElementSwipeView> {
           yearDiscovered: widget.yearDiscovered, 
           boilingPoint: widget.boilingPoint, 
           densityValue: widget.densityValue, 
-          meltingPoint: widget.meltingPoint, 
-          oxidationNumbers: widget.oxidationNumbers, 
+          meltingPoint: widget.meltingPoint,  
           electronegativity: widget.electronegativity,
-          costPerOneHundredGrams: widget.costPerOneHundredGrams
+          costPerOneHundredGrams: widget.costPerOneHundredGrams, 
+          ionizationEnergy: widget.ionizationEnergy,
           
         ),
+
+        PageFourElement(
+
+          oxidationNumbers: widget.oxidationNumbers, 
+          discoveredBy: widget.discoveredBy,
+          valenceStates: widget.valenceStates, 
+          period: widget.period, 
+          groupElement: widget.groupElement,
+          
+
+        ),
+
+        const PageFiveElement()
 
       ]
       

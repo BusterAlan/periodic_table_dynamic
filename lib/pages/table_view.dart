@@ -93,7 +93,7 @@ class _TableViewPageState extends State<TableViewPage> {
 
               if (snapshot.connectionState == ConnectionState.waiting) {
 
-                return const Center(child: CircularProgressIndicator());
+                return const Center(child: CustomCircularProgress());
 
               } else if (snapshot.hasError) {
 
@@ -131,7 +131,9 @@ class _TableViewPageState extends State<TableViewPage> {
                               if (_isValidElement(x ~/ 18, x % 18)) {
 
                                 validIndex++;
-
+                                if (validIndex == 56) validIndex = 70; 
+                                if (validIndex == 88) validIndex = 102;
+                              
                               }
 
                             }
@@ -148,6 +150,9 @@ class _TableViewPageState extends State<TableViewPage> {
 
                                   // Serie del Lantano y Actinio
 
+                                  int localLan = 56;
+                                  int localAct = 88;
+
                                   MyHelperButton(
                                     
                                     title: condLan ? 'Serie del Lantano' : 'Serie del Actinio',
@@ -157,28 +162,55 @@ class _TableViewPageState extends State<TableViewPage> {
                                       15, 
                                       (k) {
 
-                                        return Container(
+                                        int elementIndex = condLan ? localLan : localAct;
 
-                                          height: size.width / 20,
-                                          width: size.width / 20,
-                                          decoration: BoxDecoration(
+                                        if (condLan) {
 
-                                            border: Border.all(color: Theme.of(context).indicatorColor),
-                                            color: Color.fromRGBO(                                    
-                                              
-                                              Random().nextInt(256),
-                                              Random().nextInt(256),
-                                              Random().nextInt(256),
-                                              opacityValue
+                                          localLan++;
 
-                                            ),
+                                        } else {
 
+                                          localAct++;
+
+                                        }
+
+                                        return GestureDetector(
+
+                                          onTap: () => myPushCustom(
+                                            
+                                            context, 
+                                            elementIndex
+                                            
                                           ),
 
-                                          child: Center(
-                                            
-                                            child: Text(mySymbols[validIndex])
-                                            
+                                          child: Container(
+                                          
+                                            height: size.width / 20,
+                                            width: size.width / 20,
+                                            decoration: BoxDecoration(
+                                          
+                                              border: Border.all(color: Theme.of(context).indicatorColor),
+                                              color: Color.fromRGBO(                                    
+                                                
+                                                Random().nextInt(256),
+                                                Random().nextInt(256),
+                                                Random().nextInt(256),
+                                                opacityValue
+                                          
+                                              ),
+                                          
+                                            ),
+                                          
+                                            child: Center(
+                                              
+                                              child: Text(
+                                                
+                                                mySymbols[elementIndex]
+                                                
+                                              )
+                                              
+                                            ),
+                                          
                                           ),
 
                                         );
@@ -191,24 +223,7 @@ class _TableViewPageState extends State<TableViewPage> {
 
                                 } else {
 
-                                  Navigator.of(context).push(
-
-                                    MaterialPageRoute(
-
-                                      builder: (context) => CallWidgetFunction(
-
-                                        primaryKey: validIndex + 1,
-                                        orientation: SystemChrome.setPreferredOrientations([
-                                          
-                                          DeviceOrientation.portraitUp
-                                          
-                                        ]),
-
-                                      ),
-
-                                    ),
-
-                                  );                                  
+                                  myPushCustom(context, validIndex);
 
                                 }
 
@@ -277,6 +292,29 @@ class _TableViewPageState extends State<TableViewPage> {
     );
 
   }
+
+}
+
+void myPushCustom(BuildContext context, int index) {
+
+  Navigator.of(context).push(
+
+    MaterialPageRoute(
+
+      builder: (context) => CallWidgetFunction(
+
+        primaryKey: index + 1,
+        orientation: SystemChrome.setPreferredOrientations([
+          
+          DeviceOrientation.portraitUp
+          
+        ]),
+
+      ),
+
+    ),
+
+  );  
 
 }
 

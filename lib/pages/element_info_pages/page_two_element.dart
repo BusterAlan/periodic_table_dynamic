@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:periodic_table_dynamic/widgets/element_info_view_wt/widgets.dart';
 
 class PageTwoElement extends StatelessWidget {
 
@@ -85,23 +86,16 @@ class PageTwoElement extends StatelessWidget {
         Padding(
 
           padding: const EdgeInsets.symmetric(horizontal: 40),
-          child: Container(
-
-            padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-
-              color: Colors.black54,
-              borderRadius: BorderRadius.circular(25)
-
-            ),
-
-            child: Text(
-              
+          child: CustomContainer(
+            
+            innerColor: Colors.black54,
+            content: Text(
+        
               elementData,
               textAlign: TextAlign.justify,
               
             ),
-
+            
           ),
 
         ),

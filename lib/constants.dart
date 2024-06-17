@@ -2,14 +2,24 @@ import 'package:flutter/material.dart';
 
 class AppConstants {
 
-  /* static String uriBase = 'http://192.169.100.3:8000'; */ // Mi casa
-  static String uriBase = 'http://192.168.1.97:8000'; // Laboratorio QCB
+  static String uriBase = 'http://192.169.100.3:8000'; // Mi casa
+  // static String uriBase = 'http://192.168.1.97:8000'; // Laboratorio QCB
+
   static TextStyle underAndBold = const TextStyle(
             
     fontWeight: FontWeight.bold,
     decoration: TextDecoration.underline,
     decorationColor: Colors.white,
     
+  );
+
+  static double sizeSquare = 240;
+
+  static BoxDecoration myBoxDeco(BuildContext context) => BoxDecoration(
+    
+    borderRadius: BorderRadius.circular(10),
+    border: Border.all(color: Theme.of(context).textTheme.bodyLarge?.color ?? Colors.black)
+
   );
 
   static String celsiusToFahrenheit(double c) {
