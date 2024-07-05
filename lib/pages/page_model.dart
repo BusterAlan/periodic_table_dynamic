@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:periodic_table_dynamic/apiservice.dart';
+import 'package:periodic_table_dynamic/database/periodic_table_element.dart';
 import 'package:periodic_table_dynamic/widgets/element_info_view_wt/widgets.dart';
+import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class PageModel extends StatefulWidget {
 
-  final Color groupColor;
-  final String? englishName, latinName;
-  final List<Widget> customContent;
   final PreferredSizeWidget? myAppBar;
+  final List<Widget> customContent;
 
-  const PageModel({
-
+  const PageModel({ 
+    
     super.key, 
-    required this.groupColor, 
-    required this.customContent, 
-    this.englishName,
-    this.latinName, 
     this.myAppBar, 
-
+    required this.customContent, 
+    
   });
 
   @override
@@ -32,84 +30,103 @@ class _PageModelState extends State<PageModel> {
   @override
   Widget build(BuildContext context) {
 
-    Size size = MediaQuery.of(context).size;
+    return Consumer<ApiService>(
+      
+      builder: (context, apiService, child) {
 
-    return Scaffold(
+        PeriodicTableElement element = apiService.data!;
+        
+        Size size = MediaQuery.of(context).size;
 
-      appBar: widget.myAppBar,
-      body: SafeArea(
+        Color groupColor = Color.fromRGBO(
+                            
+          element.color.red, 
+          element.color.green, 
+          element.color.blue, 
+          0.4
+          
+        );
 
-        child: Stack(
+        return Scaffold(
 
-          children: [
+          appBar: widget.myAppBar,
+          body: SafeArea(
 
-            Align(
+            child: Stack(
 
-              alignment: Alignment.bottomCenter,
-              child: Container(
-
-                height: (size.height) / 2.5,
-                decoration: BoxDecoration(
-
-                  gradient: LinearGradient(
-
-                    begin: Alignment.bottomCenter,
-                    end: Alignment.topCenter,
-                    colors: [
-
-                      widget.groupColor.withOpacity(0.4), 
-                      widget.groupColor.withOpacity(0.0),
-
-                    ],
-
-                  ),
-
-                ),
-
-              ),
-
-            ),
-
-            DecorationColorBox(
-              
-              customColor: widget.groupColor,
-              size: size,
-              
-            ),
-
-            Column(
-
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
 
-                Expanded(
+                Align(
 
-                  child: PageView(
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
 
-                    controller: controller,
-                    scrollDirection: Axis.horizontal,
-                    children: widget.customContent,
+                    height: (size.height) / 2.5,
+                    decoration: BoxDecoration(
+
+                      gradient: LinearGradient(
+
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter,
+                        colors: [
+
+                          groupColor.withOpacity(0.4), 
+                          Colors.transparent,
+
+                        ],
+
+                      ),
+
+                    ),
 
                   ),
 
                 ),
 
-                SizedBox(
-
-                  height: 50,
-                  child: SmoothPageIndicator(
+                DecorationColorBox(
                   
-                    controller: controller, 
-                    count: widget.customContent.length,
-                    effect: JumpingDotEffect(
+                  customColor: groupColor,
+                  size: size,
+                  
+                ),
 
-                      activeDotColor: widget.groupColor,
-                      radius: 20,
-                      spacing: 10,
+                Column(
+
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+
+                    Expanded(
+
+                      child: PageView(
+
+                        controller: controller,
+                        scrollDirection: Axis.horizontal,
+                        children: widget.customContent,
+
+                      ),
 
                     ),
-                  
-                  ),
+
+                    SizedBox(
+
+                      height: 50,
+                      child: SmoothPageIndicator(
+                      
+                        controller: controller, 
+                        count: widget.customContent.length,
+                        effect: JumpingDotEffect(
+
+                          activeDotColor: groupColor,
+                          radius: 20,
+                          spacing: 10,
+
+                        ),
+                      
+                      ),
+
+                    ),
+
+                  ],
 
                 ),
 
@@ -117,12 +134,12 @@ class _PageModelState extends State<PageModel> {
 
             ),
 
-          ],
+          ),
 
-        ),
+        );
 
-      ),
-
+      },
+      
     );
 
   }

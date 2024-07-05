@@ -1,7 +1,5 @@
 // Main info
 
-// Main info
-
 import 'dart:convert';
 
 PeriodicTableElement periodicTableElementFromJson(String str) => PeriodicTableElement.fromJson(json.decode(str));
@@ -27,11 +25,16 @@ class PeriodicTableElement {
   int period;
   String groupElement;
   double ionizationEnergy;
+  int atomicRadius;
+  int covalentRadius;
+  double electronicAfinity;
+  String phase;
   MyColor color;
   Electroniclayers electroniclayers;
   List<int> oxidationStates;
   List<int> valenceStates;
   List<String> discoveredBy;
+  Proportions proportions;
 
   PeriodicTableElement({
 
@@ -52,6 +55,11 @@ class PeriodicTableElement {
     required this.period,
     required this.groupElement,
     required this.ionizationEnergy,
+    required this.atomicRadius,
+    required this.covalentRadius,
+    required this.electronicAfinity,
+    required this.phase,
+    required this.proportions,
     required this.color,
     required this.electroniclayers,
     required this.oxidationStates,
@@ -69,7 +77,7 @@ class PeriodicTableElement {
     englishName: json["englishName"],
     atomicMass: json["atomicMass"]?.toDouble(),
     yearDiscovered: json["yearDiscovered"],
-    boilingPoint: json["boilingPoint"].toDouble(),
+    boilingPoint: json["boilingPoint"]?.toDouble(),
     meltingPoint: json["meltingPoint"]?.toDouble(),
     densityValue: json["densityValue"]?.toDouble(),
     electronegativity: json["electronegativity"]?.toDouble(),
@@ -79,8 +87,13 @@ class PeriodicTableElement {
     period: json["period"],
     groupElement: json["groupElement"],
     ionizationEnergy: json["ionizationEnergy"]?.toDouble(),
+    atomicRadius: json["atomicRadius"],
+    covalentRadius: json["covalentRadius"],
+    electronicAfinity: json["electronicAfinity"]?.toDouble(),
+    phase: json["phase"],
     color: MyColor.fromJson(json["color"]),
     electroniclayers: Electroniclayers.fromJson(json["electroniclayers"]),
+    proportions: Proportions.fromJson(json["proportions"]),
     oxidationStates: List<int>.from(json["oxidationStates"].map((x) => x)),
     valenceStates: List<int>.from(json["valenceStates"].map((x) => x)),
     discoveredBy: List<String>.from(json["discoveredBy"].map((x) => x)),
@@ -106,6 +119,10 @@ class PeriodicTableElement {
     "period": period,
     "groupElement": groupElement,
     "ionizationEnergy": ionizationEnergy,
+    "atomicRadius": atomicRadius,
+    "covalentRadius": covalentRadius,
+    "electronicAfinity": electronicAfinity,
+    "phase" : phase,
     "color": color.toJson(),
     "electroniclayers": electroniclayers.toJson(),
     "oxidationStates": List<dynamic>.from(oxidationStates.map((x) => x)),
@@ -197,10 +214,52 @@ class Electroniclayers {
     "R": r,
 
   };
-  
+
 }
 
+class Proportions {
 
+  double universe;
+  double sun;
+  double ocean;
+  double humanBody;
+  double earthCrust;
+  double meteorites;
+
+  Proportions({
+
+    required this.universe,
+    required this.sun,
+    required this.ocean,
+    required this.humanBody,
+    required this.earthCrust,
+    required this.meteorites,
+
+  });
+
+  factory Proportions.fromJson(Map<String, dynamic> json) => Proportions(
+
+    universe: json["universe"]?.toDouble(),
+    sun: json["sun"]?.toDouble(),
+    ocean: json["ocean"]?.toDouble(),
+    humanBody: json["humanBody"]?.toDouble(),
+    earthCrust: json["earthCrust"]?.toDouble(),
+    meteorites: json["meteorites"]?.toDouble(),
+
+  );
+
+  Map<String, dynamic> toJson() => {
+
+    "universe": universe,
+    "sun": sun,
+    "ocean": ocean,
+    "humanBody": humanBody,
+    "earthCrust": earthCrust,
+    "meteorites": meteorites,
+
+  };
+
+}
 
 List<String> symbolInformationFromJson(String str) => List<String>.from(json.decode(str).map((x) => x));
 

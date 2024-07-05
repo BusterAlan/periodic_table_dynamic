@@ -1,25 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:periodic_table_dynamic/apiservice.dart';
 import 'package:periodic_table_dynamic/constants.dart';
 import 'package:periodic_table_dynamic/database/periodic_table_element.dart';
 import 'package:periodic_table_dynamic/widgets/element_info_view_wt/widgets.dart';
+import 'package:provider/provider.dart';
 
 class PageOneElement extends StatelessWidget {
 
-  final String alusivePhoto, elementData, symbol, name;
-  final int atomicNumber;
-  final double atomicMass;
-  final Electroniclayers electroniclayers;
+  final String alusivePhoto;
 
   const PageOneElement({ 
     
     super.key,
-    required this.alusivePhoto, 
-    required this.elementData, 
-    required this.symbol, 
-    required this.name, 
-    required this.atomicNumber, 
-    required this.atomicMass, 
-    required this.electroniclayers, 
+    required this.alusivePhoto
     
   });
 
@@ -59,62 +52,65 @@ class PageOneElement extends StatelessWidget {
 
     }
 
-    return Column(
+    return Consumer<ApiService>(
       
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
+      builder: (context, apiService, child) {
 
-        Row(
+        PeriodicTableElement element = apiService.data!;
 
-          mainAxisAlignment: MainAxisAlignment.center,
+        return Column(
+      
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
 
-            Container(
+            Row(
 
-              decoration: AppConstants.myBoxDeco(context),
-              child: Tooltip(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
 
-                message: 'Capas electrónicas',
-                child: Column(
-                
-                  children: myElecLayers(electroniclayers),
-                
+                Container(
+
+                  decoration: AppConstants.myBoxDeco(context),
+                  child: Tooltip(
+
+                    message: 'Capas electrónicas',
+                    child: Column(
+                    
+                      children: myElecLayers(element.electroniclayers),
+                    
+                    ),
+
+                  ),
+
                 ),
 
-              ),
+                const SizedBox(width: 15),
+
+                SquareElement(),
+
+              ],
 
             ),
 
-            const SizedBox(width: 15),
-
-            SquareElement(
-                  
-              symbol: symbol,
-              name: name,
-              atomicNumber: atomicNumber,
-              atomicMass: atomicMass
+            ClipRRect(
+          
+              borderRadius: BorderRadius.circular(25),
+              child: Image.asset(
                 
+                alusivePhoto,
+                height: 200,
+                width: 200,
+                fit: BoxFit.cover,
+                
+              ),
+          
             ),
 
           ],
+          
+        );
 
-        ),
-
-        ClipRRect(
-      
-          borderRadius: BorderRadius.circular(25),
-          child: Image.asset(
-            
-            alusivePhoto,
-            height: 200,
-            width: 200,
-            fit: BoxFit.cover,
-            
-          ),
-      
-        ),
-
-      ],
+      },
       
     );
 

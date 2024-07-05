@@ -1,99 +1,104 @@
 import 'package:flutter/material.dart';
+import 'package:periodic_table_dynamic/apiservice.dart';
 import 'package:periodic_table_dynamic/constants.dart';
+import 'package:periodic_table_dynamic/database/periodic_table_element.dart';
+import 'package:provider/provider.dart';
 
 class SquareElement extends StatelessWidget {
 
-  final String symbol;
-  final String name;
-  final int atomicNumber;
-  final double atomicMass;
-
-  const SquareElement({ 
-    
-    super.key, required this.symbol, required this.name, 
-    required this.atomicNumber, required this.atomicMass, });
+  const SquareElement({ super.key, });
 
   @override
   Widget build(BuildContext context) {
 
-    return Container(
-    
-      height: AppConstants.sizeSquare,
-      width: AppConstants.sizeSquare,
-      decoration: BoxDecoration(
-    
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: Theme.of(context).textTheme.bodyLarge?.color ?? Colors.black)
-    
-      ),
-    
-      child: Column(
-    
-        children: [
-    
-          // Número atómico y masa atómica
-    
-          Padding(
-    
-            padding: const EdgeInsets.all(7.5),
-            child: Row(
-            
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-            
-                Text(
-                  
-                  atomicNumber.toString(),
-                  style: const TextStyle(fontSize: 20),
-                  
-                ),
-            
-                Text(
-                  
-                  atomicMass.toString(),
-                  style: const TextStyle(fontSize: 20),
-                  
-                ),
-            
-              ],
-            
-            ),
-            
+    return Consumer<ApiService>(
+      
+      builder: (context, apiService, child) {
+
+        PeriodicTableElement element = apiService.data!;
+
+        return Container(
+        
+          height: AppConstants.sizeSquare,
+          width: AppConstants.sizeSquare,
+          decoration: BoxDecoration(
+        
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(color: Theme.of(context).textTheme.bodyLarge?.color ?? Colors.black)
+        
           ),
-    
-          // Símbolo del elemento
-    
-          Text(
-            
-            symbol,
-            textAlign: TextAlign.center,
-            style: const TextStyle(
+        
+          child: Column(
+        
+            children: [
+        
+              // Número atómico y masa atómica
+        
+              Padding(
+        
+                padding: const EdgeInsets.all(7.5),
+                child: Row(
                 
-              fontSize: 100,
-              fontWeight: FontWeight.bold,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
                 
-            ),
-            
+                    Text(
+                      
+                      element.atomicNumber.toString(),
+                      style: const TextStyle(fontSize: 20),
+                      
+                    ),
+                
+                    Text(
+                      
+                      element.atomicMass.toString(),
+                      style: const TextStyle(fontSize: 20),
+                      
+                    ),
+                
+                  ],
+                
+                ),
+                
+              ),
+        
+              // Símbolo del elemento
+        
+              Text(
+                
+                element.symbol,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                    
+                  fontSize: 100,
+                  fontWeight: FontWeight.bold,
+                    
+                ),
+                
+              ),
+        
+              // Nombre del elemento
+        
+              Text(
+                
+                element.name,
+                style: const TextStyle(
+              
+                  color: Colors.white,
+                  fontSize: 20,
+              
+                ),
+                
+              )
+        
+            ],
+        
           ),
-    
-          // Nombre del elemento
-    
-          Text(
-            
-            name,
-            style: const TextStyle(
-          
-              color: Colors.white,
-              fontSize: 20,
-          
-            ),
-            
-          )
-    
-        ],
-    
-      ),
-    
+        
+        );
+
+      },
+      
     );
 
   }

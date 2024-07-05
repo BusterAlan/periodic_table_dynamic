@@ -1,9 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:periodic_table_dynamic/apiservice.dart';
 import 'package:periodic_table_dynamic/pages/table_view.dart';
+import 'package:provider/provider.dart';
 
 void main() {
 
-  runApp(const MainApp());
+  runApp(
+    
+    ChangeNotifierProvider(
+      
+      create: (context) => ApiService(),
+      child: const MainApp(),
+      
+    ),
+    
+  );
 
 }
 

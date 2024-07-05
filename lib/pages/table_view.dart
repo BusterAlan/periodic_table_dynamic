@@ -303,7 +303,7 @@ void myPushCustom(BuildContext context, int index) {
 
       builder: (context) => CallWidgetFunction(
 
-        primaryKey: index + 1,
+        primaryKey: index + 1, // Número atómico
         orientation: SystemChrome.setPreferredOrientations([
           
           DeviceOrientation.portraitUp

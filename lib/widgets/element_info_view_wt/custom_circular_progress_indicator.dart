@@ -24,7 +24,6 @@ class _CustomCircularProgressState extends State<CustomCircularProgress> {
 
     return const PageModel(
       
-      groupColor: Colors.transparent, 
       customContent: [
     
         Center(
